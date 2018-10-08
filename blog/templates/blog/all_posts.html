@@ -1,14 +1,15 @@
 {% extends 'blog/base.html' %}
 
 {% block content %}
-  {% for post in posts %}
+  {% for post in all_posts %}
     <div class="post">
-      <div class"date">
-        <p>Published: {{ post.published_date }} </p>
-      </div>
+      {% if post.published_date %}
+        <div class="date">
+          <p>Published: {{ post.published_date }} </p>
+        </div>
+      {% endif %}
       <h1><a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a></h1>
       <p>{{ post.text|linebreaksbr }}</p>
     </div>
   {% endfor %}
-  <p>You can check all postes including unpublished posts <a href="{% url 'all_posts' %}">here</a>.</p>
 {% endblock %}
